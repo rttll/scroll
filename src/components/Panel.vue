@@ -1,37 +1,31 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { gsap, timeline } from '../util/scroll';
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import {  timeline } from '../util/scroll';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-// gsap.registerPlugin(ScrollTrigger);
-
-timeline.scrollTrigger = {
-  trigger: '.f',
-  start: 'top center',
-  end: 'top 100px',
-  scrub: true,
-};
-
+gsap.registerPlugin(ScrollTrigger);
 const box = ref(null);
 
 onMounted(() => {
-  // timeline.to('.f', {
-  //   x: 400,
-  // });
-  gsap.to('.f', {
+  const timeline = gsap.timeline({
     scrollTrigger: {
-      trigger: '.f',
-      toggleActions: 'reverse none none none',
+      trigger: box.value,
+      start: 'top center',
+      end: 'top 100px',
+      scrub: 3,
+      markers: true,
+      pin: true,
     },
-    x: 400,
   });
-
-  gsap.to(box.value, {
-    scrollTrigger: box.value, // start the animation when ".box" enters the viewport (once)
+  timeline.to(box.value, {
     x: 100,
     duration: 2,
   });
+  // .to(box.value, {
+  //   x: 10,
+  //   duration: 2,
+  // });
 });
 </script>
 

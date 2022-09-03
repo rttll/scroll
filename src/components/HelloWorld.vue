@@ -31,6 +31,7 @@ onMounted(() => {
     </div> -->
     <Panel> Hello </Panel>
     <Panel />
+    <Panel />
   </section>
 </template>
 
