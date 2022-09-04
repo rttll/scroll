@@ -8,22 +8,6 @@ const container = ref(null);
 let go = false;
 
 onMounted(() => {
-  const rect = base.value.getBoundingClientRect();
-  window.addEventListener('scroll', () => {
-    console.log(rect);
-  });
-  let options = {
-    root: document.querySelector('body'),
-    rootMargin: '0px',
-    threshold: 1.0,
-  };
-
-  // let observer = new IntersectionObserver((entries, observer) => {
-  //   const el = entries[0];
-  //   console.log(el);
-  // }, options);
-  // observer.observe(container.value);
-
   const scroller = new Scroller({
     scrollTrigger: {
       trigger: container.value,

@@ -1,0 +1,64 @@
+html,
+body,
+main {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.pin-spacer {
+  border: 1px dashed red;
+}
+.pin-spacer:before {
+  content: 'pin-spacer';
+  color: red;
+  position: absolute;
+}
+
+.spacer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  height: 100vh;
+  position: relative;
+  border: 1px dashed black;
+}
+.container:before {
+  content: 'container';
+  opacity: 0.3;
+  position: absolute;
+}
+
+section {
+  height: 100vh;
+  width: 100%;
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  background-color: gold;
+  /* opacity: 0.5; */
+  z-index: -1;
+  position: absolute;
+}
+
+.panel {
+  position: absolute;
+}
+
+.maroon {
+  background: maroon;
+}
+.dark {
+  background: #111;
+}
+.indigo {
+  background-color: indigo;
+}
