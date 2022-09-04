@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { timeline } from '../util/scroll';
-import Panel from './Panel.vue';
+// import Panel from './Panel.vue';
+import Pin from './Pin.vue';
 
 onMounted(() => {
   // const panels = document.getElementsByClassName('panel');
@@ -24,23 +24,17 @@ onMounted(() => {
 
 <template>
   <section class="">
-    <!-- <div ref="container" class="panel-container">
-      <Panel v-for="n in 5" :key="n" ref="panels">
-        <h1>{{ n }}</h1>
-      </Panel>
-    </div> -->
-    <Panel> Hello </Panel>
-    <Panel />
-    <Panel />
+    <!-- <Panel> Hello </Panel> -->
+    <Pin />
+    <div class="spacer">spacer</div>
+    <div class="spacer">spacer</div>
+    <!-- <Panel /> -->
+    <!-- <Panel /> -->
   </section>
 </template>
 
 <style scoped>
-.panel-container {
-  border: 3px dashed black;
-}
-
-a {
-  color: #42b983;
+.spacer {
+  height: 100vh;
 }
 </style>

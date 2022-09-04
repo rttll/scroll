@@ -15,17 +15,13 @@ onMounted(() => {
       end: 'top 100px',
       scrub: 3,
       markers: true,
-      pin: true,
+      // pin: true,
     },
   });
   timeline.to(box.value, {
     x: 100,
     duration: 2,
   });
-  // .to(box.value, {
-  //   x: 10,
-  //   duration: 2,
-  // });
 });
 </script>
 

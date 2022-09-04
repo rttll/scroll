@@ -3,7 +3,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const tl = gsap.timeline();
+class Scroller {
+  constructor(args) {
+    this._timeline = gsap.timeline({ ...args });
+  }
 
-export { tl as timeline };
+  get timeline() {
+    return this._timeline;
+  }
+}
+
+export { Scroller };
 export { gsap };
