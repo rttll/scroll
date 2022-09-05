@@ -15,34 +15,20 @@ main {
   position: absolute;
 }
 
-.spacer {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.container {
-  background-color: #dea402;
-  height: 100vh;
-  position: relative;
-  /* border: 1px dashed black; */
-}
-
 .container:before {
   content: 'container';
   opacity: 0.3;
   position: absolute;
 }
 
-section {
+/* section {
   height: 100vh;
   width: 100%;
   color: #111;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .intro {
   background-color: gold;

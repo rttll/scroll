@@ -5,80 +5,77 @@ import { Scroller } from '../util/scroll';
 const base = ref(null);
 const container = ref(null);
 
-let go = false;
-
 onMounted(() => {
-  const scroller = new Scroller({
+  gsap.registerPlugin(ScrollTrigger);
+
+  // const base = document.querySelector('.base');
+  const container = document.querySelector('.container');
+  let panels = document.querySelectorAll('.panel');
+  panels = [].slice.call(panels);
+
+  const hero = document.querySelector('.hero');
+  const tlHero = gsap.timeline({
     scrollTrigger: {
-      trigger: container.value,
+      trigger: hero,
       start: 'top top',
-      end: `+=${document.documentElement.clientWidth * 3}`,
+      end: hero.clientHeight * 2,
       scrub: true,
-      markers: true,
+    },
+  });
+  // tlHero.to(hero, { rotation: 90, transformOrigin: '-50% -50%' });
+
+  const intro = document.querySelector('.intro');
+  const t = gsap.timeline({
+    scrollTrigger: {
+      trigger: intro,
+      start: 'top bottom',
+      end: intro.clientHeight,
+      scrub: true,
+    },
+  });
+  t.from(intro, { xPercent: -100 });
+
+  const h = document.documentElement.clientHeight;
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      start: `top top`,
+      end: container.clientHeight * panels.length,
+      scrub: true,
+      // markers: true,
       pin: true,
     },
   });
-  const tl = scroller.timeline;
 
-  const panels = [].slice.call(container.value.children);
-
-  for (let panel of panels) {
-    tl.from(panel, {
+  const props = [
+    {
       xPercent: 100,
-    });
+    },
+    {
+      yPercent: 100,
+    },
+    {
+      xPercent: -100,
+    },
+  ];
+  for (let index = 0; index < panels.length; index++) {
+    const panel = panels[index];
+    tl.from(panel, props[index]);
   }
-  // tl.from(r.value, {
-  //   yPercent: 100,
-  // })
-  //   .from(g.value, {
-  //     xPercent: -100,
-  //   })
-  //   .from(b.value, {
-  //     yPercent: -100,
-  //   });
 });
 </script>
 
 <template>
-  <div class="base" ref="base">
-    <div class="container" ref="container">
-      <section ref="r" class="r"><p>1</p></section>
-      <section ref="g" class="g"><p>2</p></section>
-      <section ref="b" class="b"><p>3</p></section>
-    </div>
+  <section class="hero">
+    <h1>Hello</h1>
+  </section>
+  <div class="container">
+    <section class="intro">
+      <p>Keep Scrolling</p>
+    </section>
+    <section class="panel maroon"><p>1</p></section>
+    <section class="panel dark"><p>2</p></section>
+    <section class="panel indigo"><p>3</p></section>
   </div>
+  <div class="spacer"><p>blank</p></div>
 </template>
-
-<style scoped>
-.base {
-  background: darkorange;
-  position: relative;
-  overflow: hidden;
-  z-index: -1;
-}
-.container {
-  position: relative;
-  /* top: -100vh; */
-}
-.container > section {
-  height: 100vh;
-  width: 100%;
-  color: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-}
-p {
-  color: white;
-}
-.r {
-  background: maroon;
-}
-.g {
-  background: #111;
-}
-.b {
-  background-color: indigo;
-}
-</style>
