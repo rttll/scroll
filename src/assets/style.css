@@ -7,7 +7,7 @@ main {
 }
 
 .pin-spacer {
-  border: 1px dashed red;
+  /* border: 1px dashed red; */
 }
 .pin-spacer:before {
   content: 'pin-spacer';
@@ -23,10 +23,12 @@ main {
 }
 
 .container {
+  background-color: #dea402;
   height: 100vh;
   position: relative;
-  border: 1px dashed black;
+  /* border: 1px dashed black; */
 }
+
 .container:before {
   content: 'container';
   opacity: 0.3;
@@ -42,19 +44,11 @@ section {
   justify-content: center;
 }
 
-.intro-container {
-  /* opacity: 0.5; */
-  z-index: -1;
-  position: absolute;
-}
-
-.intro-inner {
-  position: relative;
-}
 .intro {
   background-color: gold;
   z-index: -1;
   position: absolute;
+  box-shadow: 15px 6px 15px #c49102;
 }
 
 .panel {
@@ -70,3 +64,7 @@ section {
 .indigo {
   background-color: indigo;
 }
+
+/* .hero {
+  background: #fcba03;
+} */

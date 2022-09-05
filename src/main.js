@@ -9,6 +9,17 @@ gsap.registerPlugin(ScrollTrigger);
   let panels = document.querySelectorAll('.panel');
   panels = [].slice.call(panels);
 
+  const hero = document.querySelector('.hero');
+  const tlHero = gsap.timeline({
+    scrollTrigger: {
+      trigger: hero,
+      start: 'top top',
+      end: hero.clientHeight * 2,
+      scrub: true,
+    },
+  });
+  // tlHero.to(hero, { rotation: 90, transformOrigin: '-50% -50%' });
+
   const intro = document.querySelector('.intro');
   const t = gsap.timeline({
     scrollTrigger: {
@@ -27,7 +38,7 @@ gsap.registerPlugin(ScrollTrigger);
       start: `top top`,
       end: container.clientHeight * panels.length,
       scrub: true,
-      markers: true,
+      // markers: true,
       pin: true,
     },
   });
