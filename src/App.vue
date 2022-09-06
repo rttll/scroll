@@ -1,9 +1,9 @@
 <script setup>
-import Parallax from './components/Parallax.vue';
+import Stars from './components/Stars.vue';
 </script>
 
 <template>
   <div>
-    <Parallax />
+    <Stars />
   </div>
 </template>
