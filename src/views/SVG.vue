@@ -1,8 +1,8 @@
 <script setup>
-import Spline from '../components/Spline.vue';
+import MouseSpline from '../components/MouseSpline.vue';
 </script>
 <template>
   <div>
-    <Spline />
+    <MouseSpline />
   </div>
 </template>
