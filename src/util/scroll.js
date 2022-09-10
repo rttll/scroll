@@ -14,4 +14,4 @@ class Scroller {
 }
 
 export { Scroller };
-export { gsap };
+export { gsap, ScrollTrigger };

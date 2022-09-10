@@ -1,9 +1,9 @@
 <script setup>
-import Stars from './components/Stars.vue';
+import Page from './views/Page.vue';
 </script>
 
 <template>
   <div>
-    <Stars />
+    <Page />
   </div>
 </template>
