@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, watch, ref, reactive } from 'vue';
 import { gsap } from '../util/scroll.js';
 
 gsap.defaults = { ease: 'none', duration: 130 };
@@ -25,6 +25,7 @@ const tl = gsap.timeline({
   repeat: -1,
   repeatDelay: gsap.utils.random(0.7, 3),
 });
+
 let animation;
 
 const defaults = {
@@ -32,10 +33,8 @@ const defaults = {
   ease: 'none',
 };
 
-const getPosition = (e) => {
-  let total = window.innerWidth,
-    x = e.clientX,
-    position = x / total;
+const getPosition = () => {
+  let position = mouse.value.x / window.innerWidth;
   return tl.duration() * position;
 };
 
@@ -56,20 +55,19 @@ const currentDashPosition = (i) => {
 
 const onMousemove = (e) => {
   mouse.value = { x: e.clientX, y: e.clientY };
-  const inside = mouseIsInside();
-  if (!inside) return tl.play();
-
-  const p = currentDashPosition();
-
-  const x = mouse.value.x;
-  if (x > tail.value && x < head.value) {
-  }
-  tl.pause();
-  const position = getPosition(e);
-  tl.seek(position);
 };
 
-const onUpdate = function () {};
+watch(mouse, (is, was) => {
+  const inside = mouseIsInside();
+  if (!inside) return tl.play();
+  if (!was) return;
+  tl.pause();
+  const position = getPosition();
+
+  const diff = is.x < was.x ? was.x - is.x : is.x - was.x;
+  console.log(is.x < was.x);
+  tl.seek(position);
+});
 
 onMounted(() => {
   dash.offset.end = 0 - path.value.getTotalLength();
@@ -85,7 +83,6 @@ onMounted(() => {
     {
       ...defaults,
       strokeDashoffset: dash.offset.end,
-      onUpdate: onUpdate,
     }
   );
   tl.add(animation);
