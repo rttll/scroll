@@ -14,10 +14,10 @@ const mouse = ref({
 });
 
 const dash = {
-  width: 250,
-  offset: { start: 250, end: 600 },
+  width: 100,
+  offset: { start: 100, end: 0 },
   gap: {
-    width: 600,
+    width: 720,
   },
 };
 
@@ -29,7 +29,7 @@ const tl = gsap.timeline({
 let animation;
 
 const defaults = {
-  duration: 1,
+  duration: 2,
   ease: 'none',
 };
 
@@ -39,7 +39,7 @@ const getPosition = () => {
 };
 
 const mouseIsInside = () => {
-  const rect = path.value.getBoundingClientRect();
+  const rect = path.value.parentNode.parentNode.getBoundingClientRect();
   const { top, bottom } = rect;
   return mouse.value.y < bottom && mouse.value.y > top;
 };
@@ -59,19 +59,16 @@ const onMousemove = (e) => {
 
 watch(mouse, (is, was) => {
   const inside = mouseIsInside();
-  if (!inside) return tl.play();
   if (!was) return;
+  if (!inside) return tl.play();
   tl.pause();
   const position = getPosition();
-
-  const diff = is.x < was.x ? was.x - is.x : is.x - was.x;
-  console.log(is.x < was.x);
   tl.seek(position);
 });
 
 onMounted(() => {
   dash.offset.end = 0 - path.value.getTotalLength();
-  window.dash = dash;
+
   document.addEventListener('mousemove', (e) => onMousemove(e));
 
   animation = gsap.fromTo(
@@ -90,7 +87,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="my-[100vh]">
+  <div class="my-[50vh]">
     <div class="fixed top-0 left-0">
       <div class="flewx">
         <p>head: {{ head }}</p>
@@ -100,20 +97,34 @@ onMounted(() => {
         <p>{{ currentOffset }}</p>
       </div>
     </div>
-    <svg
+    <div class="px-12">
+      <div class="py-12 border border-gray-800">
+        <svg class="w-full h-4">
+          <path
+            ref="path"
+            d="M 0 0 H 720"
+            :style="`stroke: #8a11de; stroke-width:20px; 
+            fill: none; 
+            stroke-dasharray: ${dash.width}px ${dash.gap.width}px;
+            stroke-dashoffset: 100px
+            `"
+          />
+        </svg>
+      </div>
+    </div>
+
+    <!-- <svg
       viewBox="0 0 500 500"
       xmlns="http://www.w3.org/2000/svg"
       xmlns:bx="https://boxy-svg.com"
       class="border border-pink-600"
     >
-      <defs>
-        <!-- <bx:grid x="0" y="0" width="332.587" height="170.706"></bx:grid> -->
-      </defs>
+      
       <path
         ref="path"
         :style="`stroke: rgb(0, 0, 0); fill: none; stroke-dasharray: ${dash.width}px ${dash.gap.width}px`"
         d="M -12.788 148.272 L 65.229 183.015 L 217.209 137.459 L 349.227 209.18 L 395.744 159.556 L 437.883 182.925 L 525.535 122.756"
       ></path>
-    </svg>
+    </svg> -->
   </div>
 </template>
