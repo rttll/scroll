@@ -1,10 +1,7 @@
 <script setup>
-import Page from './views/Page.vue';
-import SVG from './views/SVG.vue';
-import HorizontalPanels from './components/HorizontalPanels.vue';
+import Scene from './components/Scene.vue';
 </script>
 
 <template>
-  <HorizontalPanels />
-  <div id="end"></div>
+  <Scene />
 </template>
