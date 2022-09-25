@@ -1,7 +1,7 @@
 <script setup>
-import Scene from './components/Scene.vue';
+import Clip from './components/Clip.vue';
 </script>
 
 <template>
-  <Scene />
+  <Clip />
 </template>
